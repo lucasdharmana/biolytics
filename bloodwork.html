@@ -1,36 +1,590 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <title>Blood Work Results</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      background: #161622;
-      color: #fff;
-      font-family: 'Inter', Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Transformation - Real Data - Biolytics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #ff6b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #ff6b00;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .disclaimer {
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 30px auto;
+            max-width: 800px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ff6b00;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Personal Story Section */
+        .story-section {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.3) 0%, rgba(26, 26, 46, 0.1) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .story-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff6b00;
+        }
+
+        .story-section p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            line-height: 1.8;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2a2a3e 100%);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(255,107,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,107,0,0.4);
+            box-shadow: 0 10px 30px rgba(255,107,0,0.15);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .metric-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .change-badge {
+            background: rgba(255, 107, 0, 0.2);
+            border: 1px solid #ff6b00;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #ff6b00;
+        }
+
+        .range-container {
+            position: relative;
+            height: 35px;
+            background: #0a0a0a;
+            border-radius: 20px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .range-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 20px;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .range-before {
+            background: linear-gradient(90deg, #ff6b00 0%, #ff8c00 100%);
+            opacity: 0.3;
+        }
+
+        .range-after {
+            background: linear-gradient(90deg, #44ff44 0%, #66ff66 100%);
+            width: 0;
+        }
+
+        .range-after.animate {
+            width: var(--after-width);
+        }
+
+        .metric-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .value-box {
+            text-align: center;
+            flex: 1;
+        }
+
+        .value-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .value-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .value-before {
+            color: #ff6b00;
+        }
+
+        .value-after {
+            color: #44ff44;
+        }
+
+        .feeling-box {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,107,0,0.2);
+        }
+
+        .feeling-title {
+            font-size: 0.9rem;
+            color: #ff6b00;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feeling-text {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Context Section */
+        .context-section {
+            background: rgba(255, 107, 0, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .context-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #ff6b00;
+        }
+
+        .context-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .context-item {
+            text-align: center;
+        }
+
+        .context-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ff6b00;
+            margin-bottom: 10px;
+        }
+
+        .context-label {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+            border-radius: 30px;
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,107,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,0,0.4);
+        }
+
+        .highlight {
+            color: #ff6b00;
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .context-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div style="text-align: center; padding: 100px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%); border-radius: 30px; margin-top: 40px;">
-    <h2 style="font-size: 3rem; margin-bottom: 30px; line-height: 1.2;"> Want Your Own Results? </h2>
-    <p style="font-size: 1.4rem; color: #b0b0b0; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">
-      Ready to take action? Message me now on WhatsApp and see what’s possible for you.
-    </p>
-    <a href="https://wa.me/447951430141?text=I%27ve%20seen%20the%20blood%20work%20results%20-%20I%27m%20ready%20to%20start"
-       style="display: inline-block; padding: 25px 60px; background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%); color: #fff; text-decoration: none; font-size: 1.3rem; font-weight: 700; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(255,107,0,0.3); text-transform: uppercase; letter-spacing: 1px;">
-      Get My Blood Work Analysed Now →
-    </a>
-    <p style="margin-top: 30px; color: #888;">
-      Limited to 12 men per month for personalised attention
-    </p>
-  </div>
+    <div class="header">
+        <a href="index.html" class="back-link">← Back</a>
+        <h1>One Man's Journey: My 90-Day Data</h1>
+        <p>Not a promise. Not an average. Just what happened to me.</p>
+    </div>
+
+    <div class="disclaimer">
+        ⚠️ Individual results. This is my personal experience, not medical advice or a guarantee of your results.
+    </div>
+
+    <div class="container">
+        <div class="story-section">
+            <h2>Why I'm Sharing This</h2>
+            <p>
+                I'm Lucas. 90 days ago, I was exhausted by 2pm every day, couldn't focus, and felt like I was aging rapidly at 28. 
+                Sound familiar?
+            </p>
+            <p>
+                I tried everything separately - gym, supplements, sleep apps. Nothing stuck until I started tracking everything 
+                and treating my body as an interconnected system. These are my actual blood test results.
+            </p>
+            <p style="font-weight: 600; color: #ff6b00;">
+                This is what's possible. Your results will be different. But the process works.
+            </p>
+        </div>
+
+        <div class="results-grid">
+            <!-- Total Testosterone -->
+            <div class="result-card">
+                <div class="metric-header">
+                    <div class="metric-name">Total Testosterone</div>
+                    <div class="change-badge">+37%</div>
+                </div>
+                <div class="range-container">
+                    <div class="range-bar range-before" style="width: 42%;"></div>
+                    <div class="range-bar range-after" data-width="58%" style="--after-width: 58%;"></div>
+                </div>
+                <div class="metric-values">
+                    <div class="value-box">
+                        <div class="value-label">Day 0</div>
+                        <div class="value-number value-before">421</div>
+                        <div style="color: #888; font-size: 0.8rem;">ng/dL</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-label">Day 90</div>
+                        <div class="value-number value-after">576</div>
+                        <div style="color: #888; font-size: 0.8rem;">ng/dL</div>
+                    </div>
+                </div>
+                <div class="feeling-box">
+                    <div class="feeling-title">What Changed For Me:</div>
+                    <div class="feeling-text">
+                        No more 3pm crashes. Morning wood returned. Actually wanted to go out again instead of Netflix.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Morning Cortisol -->
+            <div class="result-card">
+                <div class="metric-header">
+                    <div class="metric-name">Morning Cortisol</div>
+                    <div class="change-badge">-39%</div>
+                </div>
+                <div class="range-container">
+                    <div class="range-bar range-before" style="width: 75%;"></div>
+                    <div class="range-bar range-after" data-width="45%" style="--after-width: 45%;"></div>
+                </div>
+                <div class="metric-values">
+                    <div class="value-box">
+                        <div class="value-label">Day 0</div>
+                        <div class="value-number value-before">24.8</div>
+                        <div style="color: #888; font-size: 0.8rem;">μg/dL</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-label">Day 90</div>
+                        <div class="value-number value-after">15.2</div>
+                        <div style="color: #888; font-size: 0.8rem;">μg/dL</div>
+                    </div>
+                </div>
+                <div class="feeling-box">
+                    <div class="feeling-title">What Changed For Me:</div>
+                    <div class="feeling-text">
+                        Stopped waking up anxious. Could handle work stress without snapping. Slept through the night.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vitamin D -->
+            <div class="result-card">
+                <div class="metric-header">
+                    <div class="metric-name">Vitamin D</div>
+                    <div class="change-badge">+153%</div>
+                </div>
+                <div class="range-container">
+                    <div class="range-bar range-before" style="width: 19%;"></div>
+                    <div class="range-bar range-after" data-width="48%" style="--after-width: 48%;"></div>
+                </div>
+                <div class="metric-values">
+                    <div class="value-box">
+                        <div class="value-label">Day 0</div>
+                        <div class="value-number value-before">19</div>
+                        <div style="color: #888; font-size: 0.8rem;">ng/mL</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-label">Day 90</div>
+                        <div class="value-number value-after">48</div>
+                        <div style="color: #888; font-size: 0.8rem;">ng/mL</div>
+                    </div>
+                </div>
+                <div class="feeling-box">
+                    <div class="feeling-title">What Changed For Me:</div>
+                    <div class="feeling-text">
+                        First winter without getting ill. Mood lifted. Energy stopped crashing in the afternoon.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inflammation -->
+            <div class="result-card">
+                <div class="metric-header">
+                    <div class="metric-name">hs-CRP (Inflammation)</div>
+                    <div class="change-badge">-46%</div>
+                </div>
+                <div class="range-container">
+                    <div class="range-bar range-before" style="width: 65%;"></div>
+                    <div class="range-bar range-after" data-width="35%" style="--after-width: 35%;"></div>
+                </div>
+                <div class="metric-values">
+                    <div class="value-box">
+                        <div class="value-label">Day 0</div>
+                        <div class="value-number value-before">2.6</div>
+                        <div style="color: #888; font-size: 0.8rem;">mg/L</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-label">Day 90</div>
+                        <div class="value-number value-after">1.4</div>
+                        <div style="color: #888; font-size: 0.8rem;">mg/L</div>
+                    </div>
+                </div>
+                <div class="feeling-box">
+                    <div class="feeling-title">What Changed For Me:</div>
+                    <div class="feeling-text">
+                        Joint pain gone. Recovery after gym cut in half. Brain fog lifted completely.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Free Testosterone -->
+            <div class="result-card">
+                <div class="metric-header">
+                    <div class="metric-name">Free Testosterone</div>
+                    <div class="change-badge">+25%</div>
+                </div>
+                <div class="range-container">
+                    <div class="range-bar range-before" style="width: 40%;"></div>
+                    <div class="range-bar range-after" data-width="50%" style="--after-width: 50%;"></div>
+                </div>
+                <div class="metric-values">
+                    <div class="value-box">
+                        <div class="value-label">Day 0</div>
+                        <div class="value-number value-before">10.2</div>
+                        <div style="color: #888; font-size: 0.8rem;">pg/mL</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-label">Day 90</div>
+                        <div class="value-number value-after">12.8</div>
+                        <div style="color: #888; font-size: 0.8rem;">pg/mL</div>
+                    </div>
+                </div>
+                <div class="feeling-box">
+                    <div class="feeling-title">What Changed For Me:</div>
+                    <div class="feeling-text">
+                        Started seeing muscle definition without changing workouts. Confidence returned. Decisions became easier.
+                    </div>
+                </div>
+            </div>
+
+            <!-- HRV -->
+            <div class="result-card">
+                <div class="metric-header">
+                    <div class="metric-name">HRV (Recovery)</div>
+                    <div class="change-badge">+38%</div>
+                </div>
+                <div class="range-container">
+                    <div class="range-bar range-before" style="width: 35%;"></div>
+                    <div class="range-bar range-after" data-width="48%" style="--after-width: 48%;"></div>
+                </div>
+                <div class="metric-values">
+                    <div class="value-box">
+                        <div class="value-label">Day 0</div>
+                        <div class="value-number value-before">42</div>
+                        <div style="color: #888; font-size: 0.8rem;">ms</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-label">Day 90</div>
+                        <div class="value-number value-after">58</div>
+                        <div style="color: #888; font-size: 0.8rem;">ms</div>
+                    </div>
+                </div>
+                <div class="feeling-box">
+                    <div class="feeling-title">What Changed For Me:</div>
+                    <div class="feeling-text">
+                        Could train harder and recover faster. Stress stopped affecting me physically. Better sleep quality.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="context-section">
+            <h2>What I Actually Did</h2>
+            <div class="context-grid">
+                <div class="context-item">
+                    <div class="context-number">3</div>
+                    <div class="context-label">Blood tests<br>to track progress</div>
+                </div>
+                <div class="context-item">
+                    <div class="context-number">90</div>
+                    <div class="context-label">Days of daily<br>accountability</div>
+                </div>
+                <div class="context-item">
+                    <div class="context-number">12</div>
+                    <div class="context-label">Weekly reviews<br>to adjust protocol</div>
+                </div>
+                <div class="context-item">
+                    <div class="context-number">£2k</div>
+                    <div class="context-label">Total investment<br>in myself</div>
+                </div>
+            </div>
+            <p style="margin-top: 30px; color: #b0b0b0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                No TRT. No extreme diets. No 2-hour gym sessions. Just data-driven adjustments to sleep, 
+                nutrition, and stress based on what MY body needed.
+            </p>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Want to See What's <span class="highlight">Possible for You?</span></h2>
+        <p>I only work with 12 men per month to ensure everyone gets proper attention.</p>
+        <a href="https://wa.me/447951430141?text=Saw%20your%20results%20-%20want%20to%20discuss%20if%20this%20could%20work%20for%20me" class="cta-button">Let's Talk →</a>
+        <p style="margin-top: 25px; color: #888;">Not a sales call. Just a conversation about whether this approach fits your situation.</p>
+        <p style="margin-top: 15px;"><a href="index.html" style="color: #888; text-decoration: none;">← Back to main page</a></p>
+    </div>
+
+    <script>
+        // Animate bars when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const afterBars = entry.target.querySelectorAll('.range-after');
+                    afterBars.forEach(bar => {
+                        setTimeout(() => {
+                            bar.classList.add('animate');
+                        }, 200);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.result-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
