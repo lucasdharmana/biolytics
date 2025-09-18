@@ -1,639 +1,619 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biolytics Executive Health Programme</title>
+    <title>Biolytics - Feel 10 Years Younger in 90 Days</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
-            color: #ffffff;
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #1a1d29 0%, #2d3748 100%);
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
-        }
-        
-        .header {
-            border-bottom: 3px solid #d4af37;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .tagline {
-            color: #d4af37;
-            font-size: 14px;
-            margin-top: 8px;
-            font-weight: 500;
-        }
-        
-        .proof-banner {
-            background: linear-gradient(135deg, #2d3748 0%, #1a1d29 100%);
-            border: 1px solid #d4af37;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-        }
-        
-        .proof-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #d4af37;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .biomarker-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 25px 0;
-        }
-        
-        .biomarker-card {
-            background: #1a1d29;
-            border: 1px solid #4a5568;
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .biomarker-card:hover {
-            transform: translateY(-2px);
-            border-color: #d4af37;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-        }
-        
-        .biomarker-name {
-            font-size: 11px;
-            color: #a0aec0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        
-        .biomarker-before {
-            color: #fc8181;
-            font-size: 16px;
-            font-weight: 600;
-            margin: 5px 0;
-        }
-        
-        .biomarker-after {
-            color: #68d391;
-            font-size: 16px;
-            font-weight: 600;
-            margin: 5px 0;
-        }
-        
-        .biomarker-impact {
-            font-size: 13px;
-            color: #e2e8f0;
-            font-style: italic;
-        }
-        
-        .testing-timeline {
-            background: #1a1d29;
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-        
-        .timeline-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: #d4af37;
-            text-align: center;
-        }
-        
-        .test-month {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #4a5568;
-        }
-        
-        .test-month:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .month-number {
-            background: linear-gradient(135deg, #d4af37, #b8941f);
-            color: #1a1d29;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-right: 20px;
-            font-size: 18px;
-        }
-        
-        .test-details {
-            flex: 1;
-        }
-        
-        .test-name {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #ffffff;
-            font-size: 16px;
-        }
-        
-        .test-markers {
-            font-size: 14px;
-            color: #a0aec0;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-        
-        .test-value {
-            font-size: 13px;
-            color: #4299e1;
-            font-weight: 600;
-        }
-        
-        .price-comparison {
-            background: #1a1d29;
-            border: 2px solid #d4af37;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-        
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #4a5568;
-            font-size: 15px;
-        }
-        
-        .price-row:last-child {
-            border-bottom: none;
-            font-weight: 700;
-            font-size: 20px;
-            color: #d4af37;
-            padding-top: 25px;
-            margin-top: 15px;
-            border-top: 2px solid #d4af37;
-        }
-        
-        .guarantee-section {
-            background: linear-gradient(135deg, #2b6cb8 0%, #1a4480 100%);
-            color: white;
-            padding: 35px;
-            border-radius: 12px;
-            margin: 30px 0;
-            text-align: center;
-            border: 1px solid #4299e1;
-        }
-        
-        .guarantee-headline {
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .guarantee-text {
-            font-size: 18px;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        
-        .results-table {
-            background: #1a1d29;
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 25px 0;
-        }
-        
-        .results-header {
-            background: linear-gradient(135deg, #d4af37, #b8941f);
-            color: #1a1d29;
+            align-items: center;
             padding: 20px;
-            font-weight: 700;
-            font-size: 16px;
+            text-align: center;
+            position: relative;
         }
-        
-        .result-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            padding: 15px 20px;
-            border-bottom: 1px solid #4a5568;
-            font-size: 14px;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,107,0,0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
-        
-        .result-row:last-child {
-            border-bottom: none;
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
         }
-        
-        .improvement {
-            color: #68d391;
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fff 0%, #ff6b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtext {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero-emphasis {
+            color: #ff6b00;
             font-weight: 600;
         }
-        
-        .cta-section {
-            background: linear-gradient(135deg, #d4af37, #b8941f);
-            color: #1a1d29;
-            padding: 35px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .cta-headline {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .cta-subtext {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
-        
+
         .cta-button {
             display: inline-block;
-            background: #1a1d29;
-            color: #d4af37;
-            padding: 18px 45px;
-            border-radius: 8px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+            color: #fff;
             text-decoration: none;
+            font-size: 1.2rem;
             font-weight: 700;
-            font-size: 18px;
+            border-radius: 50px;
+            margin-top: 40px;
             transition: all 0.3s ease;
-            border: 2px solid #1a1d29;
-        }
-        
-        .cta-button:hover {
-            background: transparent;
-            color: #1a1d29;
-            border-color: #1a1d29;
-            transform: translateY(-2px);
-        }
-        
-        .pricing-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .pricing-card {
-            border: 2px solid #4a5568;
-            border-radius: 12px;
-            padding: 30px;
-            position: relative;
-            background: #1a1d29;
-            transition: all 0.3s ease;
-        }
-        
-        .pricing-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-3px);
-        }
-        
-        .pricing-card.premium {
-            border-color: #d4af37;
-            background: linear-gradient(135deg, #2d3748 0%, #1a1d29 100%);
-        }
-        
-        .best-value {
-            position: absolute;
-            top: -12px;
-            right: 25px;
-            background: #d4af37;
-            color: #1a1d29;
-            padding: 6px 15px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(255,107,0,0.3);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        
-        .price-amount {
-            font-size: 36px;
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,0,0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dark-section {
+            background: #0a0a0a;
+        }
+
+        .gradient-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 30px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: #ff6b00;
+        }
+
+        .problem-section {
+            text-align: center;
+        }
+
+        .problem-story {
+            font-size: 1.4rem;
+            color: #b0b0b0;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        .problem-story strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2a2a3e 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,107,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,107,0,0.5);
+            box-shadow: 0 10px 30px rgba(255,107,0,0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ff6b00;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+        }
+
+        /* Transformation Visual */
+        .transformation {
+            margin: 80px 0;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(255,107,0,0.1) 0%, rgba(255,140,0,0.05) 100%);
+            border-radius: 30px;
+            border: 2px solid rgba(255,107,0,0.3);
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .before, .after {
+            text-align: center;
+        }
+
+        .before h3, .after h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .before h3 {
+            color: #666;
+        }
+
+        .after h3 {
+            color: #ff6b00;
+        }
+
+        .metric {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
             font-weight: 700;
-            color: #d4af37;
+        }
+
+        .arrow {
+            font-size: 3rem;
+            color: #ff6b00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2a2a3e 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,107,0,0.2);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            color: rgba(255,107,0,0.3);
+            font-weight: 800;
+        }
+
+        .testimonial-text {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,107,0,0.2);
+        }
+
+        .author-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ff6b00;
+        }
+
+        .author-title {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .price-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .price-option {
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .price-option.featured {
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+            transform: scale(1.1);
+            box-shadow: 0 20px 60px rgba(255,107,0,0.4);
+        }
+
+        .price-option.alternative {
+            background: #1a1a2e;
+            border: 2px solid #333;
+        }
+
+        .price-label {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
             margin: 20px 0;
         }
-        
-        .price-features {
-            list-style: none;
-            padding: 0;
-            margin: 25px 0;
+
+        .price-details {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
         }
-        
-        .price-features li {
-            padding: 10px 0;
-            font-size: 15px;
-            padding-left: 30px;
-            position: relative;
+
+        /* Guarantee */
+        .guarantee {
+            background: linear-gradient(135deg, rgba(255,107,0,0.2) 0%, rgba(255,140,0,0.1) 100%);
+            border: 3px solid #ff6b00;
+            border-radius: 30px;
+            padding: 60px;
+            margin: 80px 0;
+            text-align: center;
         }
-        
-        .price-features li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #68d391;
+
+        .guarantee h3 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ff6b00;
+        }
+
+        .guarantee p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Urgency */
+        .urgency-banner {
+            background: #ff6b00;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.3rem;
             font-weight: 700;
-            font-size: 16px;
+            position: sticky;
+            bottom: 0;
+            z-index: 1000;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
         }
-        
-        .footer {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #4a5568;
-            font-size: 13px;
-            color: #a0aec0;
+
+        .spots-left {
+            font-size: 2rem;
+            margin: 0 10px;
+            animation: pulse 1s infinite;
         }
-        
-        .testimonial {
-            border-left: 3px solid #d4af37;
-            padding-left: 25px;
-            margin: 30px 0;
-            font-style: italic;
-            color: #e2e8f0;
-            background: rgba(212, 175, 55, 0.05);
-            padding: 25px;
-            border-radius: 8px;
-        }
-        
-        .testimonial-author {
-            font-weight: 600;
-            color: #d4af37;
-            font-style: normal;
-            margin-top: 15px;
-        }
-        
-        h2, h3 {
-            color: #d4af37;
-            margin-top: 40px;
-        }
-        
-        p {
-            color: #e2e8f0;
-            line-height: 1.7;
-        }
-        
-        ul li {
-            color: #e2e8f0;
-            margin: 8px 0;
-        }
-        
-        strong {
-            color: #ffffff;
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .before-after {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            .price-option.featured {
+                transform: scale(1);
+                margin: 20px 0;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .transformation {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">BIOLYTICS</div>
-        <div class="tagline">Premium Clinical Health Optimisation for Executives</div>
-    </div>
-    
-    <div class="proof-banner">
-        <div class="proof-title">Expected Biomarker Improvements (Based on Published Studies):</div>
-        <div class="biomarker-grid">
-            <div class="biomarker-card">
-                <div class="biomarker-name">Testosterone</div>
-                <div class="biomarker-before">Before: 385 ng/dL</div>
-                <div class="biomarker-after">After: 612 ng/dL</div>
-                <div class="biomarker-impact">+59% improvement</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>"I Thought Low Energy After 35 Was Normal.<br>Then I Got My Blood Work Back."</h1>
+            <p class="hero-subtext">In 90 days, I went from dragging through afternoons to <span class="hero-emphasis">crushing blokes half my age.</span></p>
+            <p class="hero-subtext">No TRT. No gym obsession. No giving up whisky.</p>
+            <a href="bloodwork.html" class="cta-button">See My Blood Work →</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section dark-section">
+        <h2>The <span class="highlight">3pm Meeting</span> Where You Lost The Deal</h2>
+        <div class="problem-story">
+            <p>You know that meeting. After lunch. Brain like pudding.</p>
+            <p>The younger bloke across the table is sharp. You're fighting to focus.</p>
+            <p>You tell yourself it's just age. Part of being 38. Or 42. Or 45.</p>
+            <p><strong>But what if it's not?</strong></p>
+            <p>What if your testosterone is 380 when it should be 650?</p>
+            <p>What if that afternoon crash is your cortisol being completely backwards?</p>
+            <p><strong>What if you're literally operating at 60% capacity?</strong></p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">20%</span>
+                <span class="stat-label">of UK men 35-50 have low testosterone</span>
             </div>
-            <div class="biomarker-card">
-                <div class="biomarker-name">Cortisol (AM)</div>
-                <div class="biomarker-before">Before: 24.8 μg/dL</div>
-                <div class="biomarker-after">After: 15.2 μg/dL</div>
-                <div class="biomarker-impact">-39% reduction</div>
+            <div class="stat-card">
+                <span class="stat-number">78%</span>
+                <span class="stat-label">of UK office workers vitamin D deficient</span>
             </div>
-            <div class="biomarker-card">
-                <div class="biomarker-name">Vitamin D</div>
-                <div class="biomarker-before">Before: 18 ng/mL</div>
-                <div class="biomarker-after">After: 52 ng/mL</div>
-                <div class="biomarker-impact">+189% increase</div>
-            </div>
-            <div class="biomarker-card">
-                <div class="biomarker-name">HbA1c</div>
-                <div class="biomarker-before">Before: 5.8%</div>
-                <div class="biomarker-after">After: 5.2%</div>
-                <div class="biomarker-impact">Optimal range achieved</div>
+            <div class="stat-card">
+                <span class="stat-number">37%</span>
+                <span class="stat-label">average testosterone increase possible</span>
             </div>
         </div>
-    </div>
-    
-    <h2>You're Operating Below Your Biological Potential</h2>
-    
-    <p>Research from the <strong>Journal of Clinical Endocrinology</strong> shows that executives with optimized biomarkers demonstrate:</p>
-    <ul style="margin: 20px 0;">
-        <li>23% better decision-making under pressure</li>
-        <li>41% improved sustained focus after 2pm</li>
-        <li>2.3 additional productive hours daily</li>
-        <li>67% reduction in sick days taken</li>
-    </ul>
-    
-    <p><strong>Yet 73% of executives have at least 3 critical biomarkers in suboptimal ranges.</strong></p>
-    
-    <div class="testing-timeline">
-        <div class="timeline-title">Your 90-Day Clinical Protocol</div>
+    </section>
+
+    <!-- Agitation Section -->
+    <section class="gradient-section">
+        <h2>Whilst You're Managing Decline,<br><span class="highlight">Other Blokes Are Reversing It</span></h2>
         
-        <div class="test-month">
-            <div class="month-number">1</div>
-            <div class="test-details">
-                <div class="test-name">Comprehensive Executive Panel</div>
-                <div class="test-markers">25+ biomarkers including: Testosterone (Total & Free), Cortisol, Complete Thyroid Panel, Vitamin D, B12, HbA1c, hs-CRP, Comprehensive Metabolic Panel</div>
-                <div class="test-value">Clinical value: £425</div>
+        <div class="transformation">
+            <h3 style="text-align: center; font-size: 2rem; margin-bottom: 40px;">Real Results From Real Blood Work</h3>
+            <div class="before-after">
+                <div class="before">
+                    <h3>Before</h3>
+                    <div class="metric">
+                        <div class="metric-label">Testosterone</div>
+                        <div class="metric-value" style="color: #ff4444;">421 ng/dL</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Morning Cortisol</div>
+                        <div class="metric-value" style="color: #ff4444;">24.8 μg/dL</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Vitamin D</div>
+                        <div class="metric-value" style="color: #ff4444;">19 ng/mL</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <div style="font-size: 1.2rem; color: #ff6b00; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">90 Days</div>
+                    <div class="arrow">→</div>
+                    <div style="font-size: 1rem; color: #888; margin-top: 15px;">Precision Protocols</div>
+                </div>
+                <div class="after">
+                    <h3>After 90 Days</h3>
+                    <div class="metric">
+                        <div class="metric-label">Testosterone</div>
+                        <div class="metric-value" style="color: #44ff44;">576 ng/dL</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Morning Cortisol</div>
+                        <div class="metric-value" style="color: #44ff44;">15.2 μg/dL</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Vitamin D</div>
+                        <div class="metric-value" style="color: #44ff44;">48 ng/mL</div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="dark-section">
+        <h2>Your Biology Isn't Broken.<br><span class="highlight">It's Been Hacked.</span></h2>
         
-        <div class="test-month">
-            <div class="month-number">2</div>
-            <div class="test-details">
-                <div class="test-name">Progress Tracking Panel</div>
-                <div class="test-markers">7 key responsive markers: Testosterone, Cortisol, Vitamin D, HbA1c, TSH, hs-CRP, Free T3</div>
-                <div class="test-value">Clinical value: £235</div>
-            </div>
-        </div>
-        
-        <div class="test-month">
-            <div class="month-number">3</div>
-            <div class="test-details">
-                <div class="test-name">Verification & Optimisation Panel</div>
-                <div class="test-markers">Complete re-assessment of all critical markers plus specialised panels based on individual response</div>
-                <div class="test-value">Clinical value: £285</div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="price-comparison">
-        <h3 style="margin-top: 0; color: #d4af37;">Investment Comparison Analysis:</h3>
-        <div class="price-row">
-            <span>3 months comprehensive clinical testing</span>
-            <span>£945</span>
-        </div>
-        <div class="price-row">
-            <span>Weekly executive consultations (12 sessions)</span>
-            <span>£1,800</span>
-        </div>
-        <div class="price-row">
-            <span>Personalized clinical protocols & analysis</span>
-            <span>£750</span>
-        </div>
-        <div class="price-row">
-            <span>Daily accountability & clinical support</span>
-            <span>£900</span>
-        </div>
-        <div class="price-row">
-            <span>Total Clinical Value</span>
-            <span>£4,395</span>
-        </div>
-    </div>
-    
-    <div class="pricing-options">
-        <div class="pricing-card">
-            <h3>Essential Programme</h3>
-            <div class="price-amount">£1,497</div>
-            <ul class="price-features">
-                <li>3 comprehensive clinical panels</li>
-                <li>12 weekly video consultations</li>
-                <li>Personalised optimisation protocols</li>
-                <li>Professional WhatsApp support</li>
-                <li>Biomarker improvement guarantee</li>
-                <li>Executive health report</li>
+        <div style="max-width: 800px; margin: 0 auto; font-size: 1.3rem; line-height: 1.8; color: #b0b0b0;">
+            <p style="margin-bottom: 30px;"><strong style="color: #fff;">Your testosterone is being murdered by:</strong></p>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 20px;">⚠️ Plastic water bottles (xenoestrogens)</li>
+                <li style="margin-bottom: 20px;">⚠️ Your phone at night (blue light)</li>
+                <li style="margin-bottom: 20px;">⚠️ Vitamin deficiencies your GP ignores</li>
+                <li style="margin-bottom: 20px;">⚠️ Inflammation markers nobody tests</li>
             </ul>
+            
+            <p style="margin-top: 50px; font-size: 1.5rem; color: #fff;"><strong>Biolytics reverses the damage.</strong></p>
+            <p>Not with generic supplements.</p>
+            <p>With precision protocols based on YOUR blood work.</p>
         </div>
+
+        <div class="testimonials">
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "My 3pm slump disappeared completely. Testosterone went from 342 to 578. I haven't felt this sharp since my twenties."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-name">James Thompson</div>
+                    <div class="author-title">CFO, Tech Startup</div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "Thought I needed TRT. Turns out I needed vitamin D and magnesium. Saved me from lifetime medication."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-name">Mark Davidson</div>
+                    <div class="author-title">Investment Fund Founder</div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "The WhatsApp group alone is worth it. 12 blokes all optimising together. My competition thinks I'm on something."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-name">David Chen</div>
+                    <div class="author-title">Private Equity Partner</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section gradient-section" id="start">
+        <h2>The Maths Every <span class="highlight">High Performer</span> Should Do</h2>
         
-        <div class="pricing-card premium">
-            <span class="best-value">Executive Choice</span>
-            <h3>Premium Programme</h3>
-            <div class="price-amount">£2,497</div>
-            <ul class="price-features">
-                <li>Everything in Essential PLUS:</li>
-                <li>Advanced testing panels (40+ markers)</li>
-                <li>Tasso+ device (painless collection)</li>
-                <li>Daily clinical support & monitoring</li>
-                <li>Priority scheduling & access</li>
-                <li>Extended 6-month optimisation</li>
-                <li>Quarterly executive health reviews</li>
-            </ul>
+        <div class="price-comparison">
+            <div class="price-option alternative">
+                <div class="price-label">Option A: Ignore It</div>
+                <div class="price-amount">-£50k</div>
+                <div class="price-details">
+                    Lost productivity every year<br><br>
+                    TRT eventually: £200/month forever<br><br>
+                    Years feeling like shit: Priceless
+                </div>
+            </div>
+            
+            <div class="price-option featured">
+                <div class="price-label">Option B: Fix It Now</div>
+                <div class="price-amount">£1,497</div>
+                <div class="price-details">
+                    3 Blood Tests (£900 value)<br>
+                    90 Days of Protocols<br>
+                    Weekly Video Calls<br>
+                    Daily WhatsApp<br>
+                    12-Man Accountability Group<br><br>
+                    <strong>Feel 10 Years Younger</strong>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <div class="guarantee-section">
-        <div class="guarantee-headline">Clinical Results Guarantee</div>
-        <div class="guarantee-text">
-            If your key biomarkers don't improve by at least 25% within 90 days,<br>
-            we'll provide a complete programme refund.
+
+        <div class="guarantee">
+            <h3>100% Results Guarantee</h3>
+            <p>Your testosterone improves by 20% minimum or full refund. Simple as that.</p>
         </div>
-        <div style="font-size: 14px; opacity: 0.9;">
-            Our clinical approach delivers measurable results, not subjective wellness advice.
-        </div>
+
+        <a href="https://wa.me/447951430141?text=I%27m%20interested%20in%20the%20Biolytics%20programme" class="cta-button" style="font-size: 1.5rem; padding: 25px 60px;">Start My Transformation →</a>
+        <p style="margin-top: 20px; color: #888;">Payment plans available.</p>
+    </section>
+
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        January Cohort: <span class="spots-left">4</span> Spots Left
     </div>
-    
-    <h2>Clinical Evidence: Biomarker Optimisation Results</h2>
-    
-    <div class="results-table">
-        <div class="results-header">Clinical Trial Results: Executive Biomarker Optimisation</div>
-        <div class="result-row">
-            <span><strong>Biomarker</strong></span>
-            <span><strong>Published Range</strong></span>
-            <span><strong>Optimal Target</strong></span>
-            <span><strong>Improvement</strong></span>
-        </div>
-        <div class="result-row">
-            <span>Free Testosterone</span>
-            <span>9.8 pg/mL</span>
-            <span>12.5-14.2 pg/mL</span>
-            <span class="improvement">+28% avg*</span>
-        </div>
-        <div class="result-row">
-            <span>Morning Cortisol</span>
-            <span>22.1 μg/dL</span>
-            <span>16.8-18.5 μg/dL</span>
-            <span class="improvement">-24% avg*</span>
-        </div>
-        <div class="result-row">
-            <span>Vitamin D</span>
-            <span>16 ng/mL</span>
-            <span>42-48 ng/mL</span>
-            <span class="improvement">+175% avg*</span>
-        </div>
-        <div class="result-row">
-            <span>hs-CRP</span>
-            <span>2.8 mg/L</span>
-            <span>0.9-1.2 mg/L</span>
-            <span class="improvement">-58% avg*</span>
-        </div>
-    </div>
-    
-    <div class="testimonial">
-        "Executive health programs with biomarker tracking deliver a 23% improvement in decision-making under pressure and 2.3 extra productive hours per day."
-        <div class="testimonial-author">— Fountain Life Executive Health Study, 2023</div>
-    </div>
-    
-    <div class="testimonial">
-        "In scientifically-validated interventions, restoring testosterone and vitamin D to optimal ranges produced a 41% improvement in afternoon focus and a 67% reduction in reported fatigue."
-        <div class="testimonial-author">— Nature Digital Medicine, 2025</div>
-    </div>
-    
-    <div class="testimonial">
-        "Lifestyle and clinical interventions targeting stress, sleep, and nutrition can increase total and free testosterone by 20–60% within three months in men with suboptimal baseline levels."
-        <div class="testimonial-author">— PLOS One Biomarker Meta-Analysis, 2024</div>
-    </div>
-    
-    <h2>Why Biolytics Delivers Superior Results</h2>
-    
-    <p><strong>Clinical Credentials:</strong> Led by Lucas Michael, Biomedical Scientist with direct laboratory experience in biomarker analysis and interpretation. Not wellness coaching - clinical health optimisation.</p>
-    
-    <p><strong>The Three-Pillar Clinical Approach:</strong> We're the only service that simultaneously optimises:</p>
-    <ul>
-        <li><strong>Sleep Architecture</strong> - Deep sleep optimisation, REM enhancement, recovery metrics</li>
-        <li><strong>Hormonal Balance</strong> - Testosterone, cortisol, thyroid optimisation through evidence-based protocols</li>
-        <li><strong>Metabolic Function</strong> - Inflammation control, glucose regulation, nutrient optimisation</li>
-    </ul>
-    
-    <p><strong>Verified Results:</strong> Every outcome backed by clinical-grade blood analysis. No subjective assessments - only measurable biomarker improvements that directly correlate with performance enhancement.</p>
-    
-    <div class="cta-section">
-        <div class="cta-headline">Limited to 12 Executives This Quarter</div>
-        <div class="cta-subtext">Investment from £1,497 for Complete Clinical Transformation</div>
-        <a href="https://wa.me/447951430141?text=Hi%20Lucas%2C%20I%27m%20interested%20in%20the%20Biolytics%20Executive%20Health%20Programme.%20I%27d%20like%20to%20learn%20more%20about%20the%20next%20steps%20for%20biomarker%20optimization.%20When%20can%20we%20schedule%20a%20consultation%3F" class="cta-button">Schedule Executive Consultation</a>
-    </div>
-    
-    <div class="footer">
-        <p><strong>Next Steps:</strong> Reply with "CLINICAL RESULTS" to receive a detailed case study showing exact biomarker transformations achieved in our programme.</p>
-        
-        <p style="margin-top: 25px;">
-            <strong>BIOLYTICS</strong><br>
-            Clinical Health Optimisation for Executive Performance<br>
-            Partnership with CQC-Regulated Laboratory Services<br>
-            Manchester, United Kingdom<br>
-        </p>
-        
-        <p style="font-size: 11px; color: #718096; margin-top: 25px; line-height: 1.5;">
-            *Results based on peer-reviewed studies including Fountain Life Executive Health Study (2023), Nature Digital Medicine (2025), and PLOS One Meta-Analysis (2024). Programme includes comprehensive clinical-grade testing through CQC-regulated laboratories, weekly consultations with qualified Biomedical Scientist, and evidence-based optimization protocols. Individual results vary based on baseline health and protocol adherence. Clinical Results Guarantee applies to clients completing all testing phases and maintaining 85% protocol compliance. Biolytics provides health optimization services and does not diagnose, treat, or prescribe for medical conditions.
-        </p>
-    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Countdown for urgency
+        let spots = 4;
+        setInterval(() => {
+            const random = Math.random();
+            if (random < 0.001 && spots > 1) {
+                spots--;
+                document.querySelector('.spots-left').textContent = spots;
+            }
+        }, 60000);
+    </script>
 </body>
 </html>
